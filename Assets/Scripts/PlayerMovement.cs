@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D checkGrounded;
     [SerializeField] private Rigidbody2D rigidBody;
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
             if(grounded)
                 jumped = true;
         }
-        movingX = Input.GetAxis("Horizontal");
+        movingX = Input.GetAxisRaw("Horizontal");
     }
 
     // FixedUpdate is called once every physics update
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
             grounded = false;
         if (grounded && jumped)
         {
-            rigidBody.AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+            rigidBody.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
             jumped = false;
         }
         rigidBody.velocity = new Vector2(movingX * 3, rigidBody.velocity.y);
