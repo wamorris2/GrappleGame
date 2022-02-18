@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movingX;
     [SerializeField] private bool jumped;
     [SerializeField] private bool grounded;
+    public float slowedX;
+    public bool grappling;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
             if(grounded)
                 jumped = true;
         }
+
         movingX = Input.GetAxisRaw("Horizontal");
     }
 
@@ -42,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
             jumped = false;
         }
-        rigidBody.velocity = new Vector2(movingX * 3, rigidBody.velocity.y);
+        if (!grappling)
+            rigidBody.velocity = new Vector2(movingX * 3, rigidBody.velocity.y);
     }
 }

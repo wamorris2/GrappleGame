@@ -5,7 +5,8 @@ public class grappler : MonoBehaviour
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private DistanceJoint2D _distanceJoint;
     [SerializeField] private PlayerMovement playerMovement;
-    public Vector2 grapplePoint;
+    [SerializeField] private Vector2 grapplePoint;
+    [SerializeField] private float slowBy;
     public bool _enabled;
 
     // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class grappler : MonoBehaviour
     {
         if (_enabled)
         {
-            playerMovement.enabled = false;
+            playerMovement.grappling = true;
             _lineRenderer.SetPosition(0, grapplePoint);
             _lineRenderer.SetPosition(1, transform.position);
             _distanceJoint.connectedAnchor = grapplePoint;
@@ -28,14 +29,14 @@ public class grappler : MonoBehaviour
         }
         else
         {
-            playerMovement.enabled = true;
+            playerMovement.grappling = false;
             _distanceJoint.enabled = false;
             _lineRenderer.enabled = false;
         }
     }
 
-    public void setGrapplePoint()
+    public void setGrapplePoint(Vector2 point)
     {
-        
+        grapplePoint = point;
     }
 }
