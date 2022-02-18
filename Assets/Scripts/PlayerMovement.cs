@@ -48,4 +48,9 @@ public class PlayerMovement : MonoBehaviour
         if (!grappling)
             rigidBody.velocity = new Vector2(movingX * 3, rigidBody.velocity.y);
     }
+
+    public void Propel(Vector2 direction)
+    {
+        rigidBody.AddForce(direction * 10, ForceMode2D.Impulse);
+    }
 }

@@ -7,7 +7,7 @@ public class grappler : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private Vector2 grapplePoint;
     [SerializeField] private float slowBy;
-    public bool _enabled;
+    private bool _enabled;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,18 @@ public class grappler : MonoBehaviour
             _distanceJoint.enabled = false;
             _lineRenderer.enabled = false;
         }
+    }
+
+    public void Propel()
+    {
+        Vector2 dir = _distanceJoint.connectedAnchor;
+        dir.Normalize();
+        playerMovement.Propel(dir);
+    }
+
+    public void setEnabled(bool en)
+    {
+        _enabled = en;
     }
 
     public void setGrapplePoint(Vector2 point)
