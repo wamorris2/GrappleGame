@@ -47,6 +47,11 @@ public class Grappler : MonoBehaviour
         {
             _lineRenderer.SetPosition(0, grapplePoint);
             _lineRenderer.SetPosition(1, transform.position);
+            float dist = Vector2.Distance(transform.position, grapplePoint);
+            if (dist != _distanceJoint.distance)
+            {
+                _distanceJoint.distance = dist;
+            }
         }
     }
 
