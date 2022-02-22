@@ -555,6 +555,8 @@ MonoBehaviour:
   movingX: 0
   jumped: 0
   grounded: 0
+  grappler: {fileID: 1155888224}
+  pulling: 0
   slowedX: 0
   grappling: 0
 --- !u!61 &1155888220
@@ -687,6 +689,9 @@ MonoBehaviour:
   playerMovement: {fileID: 1155888219}
   grapplePoint: {x: 0, y: 0}
   slowBy: 0
+  pulling: 0
+  grappling: 0
+  pullSpeed: 0.1
 --- !u!232 &1155888225
 DistanceJoint2D:
   m_ObjectHideFlags: 0

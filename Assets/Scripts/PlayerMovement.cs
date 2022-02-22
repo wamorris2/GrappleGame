@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movingX;
     [SerializeField] private bool jumped;
     [SerializeField] private bool grounded;
+    [SerializeField] private Grappler grappler;
+    public bool pulling;
     public float slowedX;
     public bool grappling;
 
@@ -45,8 +47,10 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
             jumped = false;
         }
-        if (!grappling)
+        if (!grappler.isGrappling())
             rigidBody.velocity = new Vector2(movingX * 3, rigidBody.velocity.y);
+
+
     }
 
     public void Propel(Vector2 direction)
