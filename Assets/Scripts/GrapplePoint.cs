@@ -23,6 +23,7 @@ public class GrapplePoint : MonoBehaviour
 
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +34,6 @@ public class GrapplePoint : MonoBehaviour
     void Update()
     {
         
+
     }
 }

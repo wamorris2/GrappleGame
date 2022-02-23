@@ -25,6 +25,7 @@ public class Grappler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && grappling)
         {
             grappling = true;
+
             _lineRenderer.SetPosition(0, grapplePoint);
             _lineRenderer.SetPosition(1, transform.position);
             _distanceJoint.connectedAnchor = grapplePoint;
