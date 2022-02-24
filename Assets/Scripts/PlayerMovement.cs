@@ -7,14 +7,11 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D checkGrounded;
     [SerializeField] private Rigidbody2D rigidBody;
-    [SerializeField] private float movingX;
-    [SerializeField] private bool jumped;
-    [SerializeField] private bool grounded;
     [SerializeField] private Grappler grappler;
+    [SerializeField] private float movingX;
     [SerializeField] private float speed;
-    public bool pulling;
-    public float slowedX;
-    public bool grappling;
+    private bool jumped;
+    private bool grounded;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
                 jumped = true;
         }
 
-        movingX = Input.GetAxisRaw("Horizontal");
+        movingX = Input.GetAxis("Horizontal");
     }
 
     // FixedUpdate is called once every physics update
@@ -48,8 +45,9 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
             jumped = false;
         }
-        if (!grappler.isGrappling())
-            rigidBody.velocity = new Vector2(movingX * speed, rigidBody.velocity.y);
+        //if (!grappler.isGrappling())
+        transform.Translate(movingX  * speed, 0f, 0f);
+            //(movingX * speed, rigidBody.velocity.y);
 
 
     }

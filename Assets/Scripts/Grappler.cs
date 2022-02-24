@@ -5,16 +5,18 @@ public class Grappler : MonoBehaviour
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private DistanceJoint2D _distanceJoint;
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private Vector2 grapplePoint;
-    [SerializeField] private float slowBy;
-    [SerializeField] private bool pulling;
-    [SerializeField] private bool grappling;
     [SerializeField] private float pullSpeed;
+    private Vector2 grapplePoint;
+    private bool pulling;
+    private bool grappling;
 
     // Start is called before the first frame update
     void Start()
     {
         grappling = false;
+        _distanceJoint = GetComponent<DistanceJoint2D>();
+        _lineRenderer = GetComponent<LineRenderer>();
+        playerMovement = GetComponent<PlayerMovement>();
         _distanceJoint.enabled = false;
         _lineRenderer.enabled = false;
     }
@@ -35,7 +37,6 @@ public class Grappler : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             grappling = false;
-            playerMovement.grappling = false;
             _distanceJoint.enabled = false;
             _lineRenderer.enabled = false;
         }
