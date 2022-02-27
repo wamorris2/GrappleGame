@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        speed = 2.0f;
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
                 jumped = true;
         }
 
-        movingX = Input.GetAxis("Horizontal");
+        movingX = Input.GetAxisRaw("Horizontal");
     }
 
     // FixedUpdate is called once every physics update
@@ -45,9 +46,8 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
             jumped = false;
         }
-        //if (!grappler.isGrappling())
-        transform.Translate(movingX  * speed, 0f, 0f);
-            //(movingX * speed, rigidBody.velocity.y);
+        if (!grappler.isGrappling())
+            rigidBody.velocity = new Vector2(movingX * speed, rigidBody.velocity.y);
 
 
     }

@@ -1030,7 +1030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &734930955
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1722,13 +1722,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkGrounded: {fileID: 1127432925}
   rigidBody: {fileID: 1155888221}
-  movingX: 0
-  jumped: 0
-  grounded: 0
   grappler: {fileID: 1155888224}
-  pulling: 0
-  slowedX: 0
-  grappling: 0
+  movingX: 0
+  speed: 0
 --- !u!61 &1155888220
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1858,10 +1854,6 @@ MonoBehaviour:
   _lineRenderer: {fileID: 1155888226}
   _distanceJoint: {fileID: 1155888225}
   playerMovement: {fileID: 1155888219}
-  grapplePoint: {x: 0, y: 0}
-  slowBy: 0
-  pulling: 0
-  grappling: 0
   pullSpeed: 0.2
 --- !u!232 &1155888225
 DistanceJoint2D:
@@ -2936,7 +2928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -356.2, y: 230}
+  m_AnchoredPosition: {x: -430, y: 179}
   m_SizeDelta: {x: 28.1342, y: 31.7525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1540814284
