@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4391256619974182348}
   - component: {fileID: 4391256619974182351}
   - component: {fileID: 4391256619974182350}
+  - component: {fileID: 7516855250780064580}
   m_Layer: 0
   m_Name: GrapplePoint
   m_TagString: GrapplePoint
@@ -96,5 +97,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappler: {fileID: 0}
-  radius: 1.5
-  mainCamera: {fileID: 0}
+--- !u!58 &7516855250780064580
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4391256619974182337}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2

@@ -7,11 +7,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D checkGrounded;
     [SerializeField] private Rigidbody2D rigidBody;
+    public Animator animator;
     [SerializeField] private Grappler grappler;
     [SerializeField] private float movingX;
     [SerializeField] private float speed;
-    private bool jumped;
-    private bool grounded;
+    [SerializeField] private bool jumped;
+    [SerializeField] private bool grounded;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,18 @@ public class PlayerMovement : MonoBehaviour
                 jumped = true;
         }
 
-        movingX = Input.GetAxisRaw("Horizontal");
+        Vector3 characterScale = transform.localScale;
+        if (rigidBody.velocity.x < 0)
+            characterScale.x = -1;
+        if (rigidBody.velocity.x > 0)
+            characterScale.x = 1;
+        transform.localScale = characterScale;
+
+        movingX = Input.GetAxisRaw("Horizontal") * speed;
+
+        animator.SetFloat("Speed", Mathf.Abs(movingX));
+        animator.SetBool("Jumping", jumped);
+        animator.SetBool("OnGround", grounded);
     }
 
     // FixedUpdate is called once every physics update
@@ -37,17 +49,19 @@ public class PlayerMovement : MonoBehaviour
     {
         Collider2D[] collisions = new Collider2D[2];
         int numOfCollisions = checkGrounded.OverlapCollider(new ContactFilter2D(), collisions);
-        if (numOfCollisions > 1)
-            grounded = true;
-        else
-            grounded = false;
-        if (grounded && jumped)
+        if (numOfCollisions > 0)
         {
-            rigidBody.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+            grounded = true;
+            if (jumped)
+                rigidBody.AddForce(Vector2.up * 7, ForceMode2D.Impulse);
             jumped = false;
         }
+        else
+        {
+            grounded = false;
+        }
         if (!grappler.isGrappling())
-            rigidBody.velocity = new Vector2(movingX * speed, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(movingX, rigidBody.velocity.y);
 
 
     }
